@@ -3,16 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divya Pullivarthi - Data Analyst Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+    <title>Construction Banner Example</title>
+        /* Construction Banner Styles */
         .construction-banner {
             background: linear-gradient(45deg, #ff6b35, #f7931e);
             color: white;
@@ -21,7 +13,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 9999;
+            z-index: 10000;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
@@ -55,10 +47,13 @@
             }
         }
         
-        /* Add top margin to body content to account for fixed banner */
-        .page-content {
-            margin-top: 60px;
-            padding: 20px;
+        /* Adjust navbar and content positioning */
+        .navbar {
+            top: 48px; /* Push navbar below banner */
+        }
+        
+        .hero {
+            margin-top: 148px; /* Adjust for banner + navbar */
         }
         
         /* Mobile responsive */
@@ -68,27 +63,32 @@
                 margin-right: 50px;
             }
             
-            .page-content {
-                margin-top: 55px;
+            .navbar {
+                top: 43px;
+            }
+            
+            .hero {
+                margin-top: 143px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Construction Banner -->
-    <div class="construction-banner">
-        <div class="banner-content">
-            <div class="banner-text">
-                WEBSITE UNDER CONSTRUCTION - This site is still being built and may not be complete. We apologize for any inconvenience caused.
-            </div>
-            <div class="banner-text">
-                WEBSITE UNDER CONSTRUCTION - This site is still being built and may not be complete. We apologize for any inconvenience caused.
-            </div>
-            <div class="banner-text">
-                WEBSITE UNDER CONSTRUCTION - This site is still being built and may not be complete. We apologize for any inconvenience caused.
-            </div>
-        </div>
-    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya Pullivarthi - Data Analyst Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
