@@ -71,16 +71,17 @@
             padding: 20px;
         }
 
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
+        /* Updated Navigation Bar Styles */
+    .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 48px; /* Adjusted to sit below the construction banner */
+        width: 100%;
+        z-index: 1000;
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
 
         .nav-content {
             max-width: 1200px;
@@ -119,11 +120,11 @@
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 4rem 3rem;
-            margin-top: 100px;
+            margin-top: 140px; /* Increased from 100px to account for banner + navbar */
             margin-bottom: 3rem;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+}
 
         .profile-section {
             display: flex;
@@ -453,6 +454,7 @@
             
             .hero {
                 padding: 2rem 1rem;
+                margin-top: 120px; /* Adjusted for mobile - banner + navbar heights */
             }
             
             .hero h1 {
@@ -512,7 +514,7 @@
             <div class="banner-text">Website Under Construction - Some features may be limited</div>
         </div>
     </div>
-    
+
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">Divya Pullivarthi</div>
