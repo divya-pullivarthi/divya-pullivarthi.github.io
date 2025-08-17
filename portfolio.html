@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya Pullivarthi - Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+     <!-- ADD THIS LINE -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="portfolio.html" class="logo">
+            <img src="https://divya-pullivarthi.github.io/assets/images/profile.jpg" alt="Divya Pullivarthi Logo">
+            Divya Pullivarthi
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="certificates.html">Certificates</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div></div><div></div><div></div>
+            </div>
+            <button id="theme-toggle" title="Toggle theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <main class="container">
+        <div class="bento-grid">
+            <div class="bento-item glass-panel">
+                <div class="bento-content">
+                    <h3>About Me</h3>
+                    <p>My journey here didn't start with spreadsheets; it started with...</p>
+                </div>
+                <a href="about.html" class="bento-link">Read my full story &rarr;</a>
+            </div>
+            <div class="bento-item glass-panel">
+                <div class="bento-content">
+                    <h3>My Resume</h3>
+                    <p>A comprehensive overview of my professional experience and educational background.</p>
+                </div>
+                <a href="resume.html" class="bento-link">View resume &rarr;</a>
+            </div>
+            <div class="bento-item glass-panel">
+                 <div class="bento-content">
+                    <h3>Projects</h3>
+                    <p>A collection of my work in data analysis, BI, and machine learning.</p>
+                </div>
+                <a href="projects.html" class="bento-link">See all projects &rarr;</a>
+            </div>
+            <div class="bento-item glass-panel item-hero">
+                <img src="https://divya-pullivarthi.github.io/assets/images/profile.jpg" alt="Divya Pullivarthi" class="profile-pic">
+                <h1>Divya Pullivarthi</h1>
+                <p class="subtitle">Data Analyst || Driving Decisions with Business Intelligence</p>
+                <a href="contact.html" class="btn">Contact Me</a>
+                                <!-- ======================= THIS IS THE UPDATED SECTION ======================= -->
+                <div class="hero-social-links">
+                    <a href="http://linkedin.com/in/divya-pullivarthi-992970198" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/divya-pullivarthi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    
+                    <!-- The mailto: link is replaced with this button -->
+                    <button onclick="copyHeroEmail()" title="Click to copy email">
+                        <i id="hero-email-icon" class="fas fa-envelope"></i>
+                    </button>
+                </div>
+                <!-- ============================================================================== -->
+            </div>
+            <div class="bento-item glass-panel">
+                 <div class="bento-content">
+                    <h3>Core Skills</h3>
+                    <p>Proficient in Python, SQL, R, Power BI, and Tableau for end-to-end data analysis.</p>
+                </div>
+                <a href="skills.html" class="bento-link">See full skillset &rarr;</a>
+            </div>
+            <div class="bento-item glass-panel">
+                <div class="bento-content">
+                    <h3>Certifications</h3>
+                    <p>Certified in GenAI, Power BI, and Agile, with award-winning published research.</p>
+                </div>
+                <a href="certificates.html" class="bento-link">See credentials &rarr;</a>
+            </div>
+             <div class="bento-item glass-panel">
+                 <div class="bento-content">
+                    <h3>Education</h3>
+                    <p>M.S. from DePaul University and B.Tech from MIT ADT University.</p>
+                </div>
+                <a href="resume.html" class="bento-link">View details &rarr;</a>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = themeToggle.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            toggleIcon.className = 'fas fa-moon';
+        } else {
+            toggleIcon.className = 'fas fa-sun';
+        }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light';
+                toggleIcon.className = 'fas fa-moon';
+            } else {
+                toggleIcon.className = 'fas fa-sun';
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+
+                /* ======================= ADD THIS NEW SCRIPT ======================= */
+        function copyHeroEmail() {
+            const emailToCopy = "divya.pullivarthi@gmail.com";
+            const emailIcon = document.getElementById('hero-email-icon');
+            
+            navigator.clipboard.writeText(emailToCopy).then(() => {
+                // Add feedback class to the parent button
+                emailIcon.parentElement.classList.add('copied-feedback');
+                // Change icon to a checkmark
+                emailIcon.className = 'fas fa-check';
+
+                // Revert icon and class after 2 seconds
+                setTimeout(() => {
+                    emailIcon.className = 'fas fa-envelope';
+                    emailIcon.parentElement.classList.remove('copied-feedback');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy email: ', err);
+                alert("Failed to copy email!");
+            });
+        }
+        /* ==================================================================== */
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Divya Pullivarthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+     <!-- ADD THIS LINE -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="portfolio.html" class="logo">
+            <img src="https://divya-pullivarthi.github.io/assets/images/profile.jpg" alt="Divya Pullivarthi Logo">
+            Divya Pullivarthi
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="certificates.html">Certificates</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div></div><div></div><div></div>
+            </div>
+            <button id="theme-toggle" title="Toggle theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
+    <!-- ======================= END: CORRECTED NAVBAR ======================= -->
+
+    <!-- ======================= START: NEW MOBILE MENU OVERLAY ======================= -->
+    <div class="mobile-nav">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <!-- ======================== END: NEW MOBILE MENU OVERLAY ======================== -->
+    
+    <main class="container">
+        <header class="page-header">
+            <h1>Project Case Studies</h1>
+            <p>A collection of my work in data analysis, BI, and machine learning.</p>
+        </header>
+        <div class="projects-grid">
+            <div class="glass-panel project-card">
+                <h3>Churn Prediction Model</h3>
+                <p>Developed a model with 72.8% precision to identify at-risk customers, enabling proactive retention efforts. Achieved up to 15% churn reduction through logistic regression analysis.</p>
+                <div class="btn-container">
+                    <a href="https://github.com/divya-pullivarthi/Subscription-based-Service-Churn-Prediction" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="glass-panel project-card">
+                <h3>Sustainable BI Solution</h3>
+                <p>Built an interactive BI dashboard to analyze supply chain sustainability and pinpoint major cost-saving opportunities of $1.7M annually by identifying inefficiencies across product lines.</p>
+                <div class="btn-container">
+                    <a href="https://github.com/divya-pullivarthi/EcoPack---Sustainable-BI-Solution" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            <div class="glass-panel project-card">
+                <h3>Computer Vision Robot</h3>
+                <p>Published research on a multi-object tracking system for robotic navigation, presented at a national conference. Implemented YOLO algorithm and OpenCV integration.</p>
+                <div class="btn-container">
+                    <a href="https://www.ijrti.org/viewpaperforall?paper=IJRTI2305133" class="btn" target="_blank">Read Paper</a>
+                </div>
+            </div>
+            <div class="glass-panel project-card">
+                <h3>DeConnect Platform</h3>
+                <p>Led a cross-functional team as Scrum Master to develop a university networking app, winning 'Best Project'. Managed sprint planning and the full delivery process.</p>
+                <div class="btn-container">
+                    <a href="https://github.com/divya-pullivarthi/DeConnect" class="btn" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ======================= START: UPDATED JAVASCRIPT ======================= -->
+    <script>
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = themeToggle.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            toggleIcon.className = 'fas fa-moon';
+        } else {
+            toggleIcon.className = 'fas fa-sun';
+        }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light';
+                toggleIcon.className = 'fas fa-moon';
+            } else {
+                toggleIcon.className = 'fas fa-sun';
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        // --- HAMBURGER MENU SCRIPT ---
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+    </script>
+    <!-- ======================== END: UPDATED JAVASCRIPT ======================== -->
+
+</body>
+</html>

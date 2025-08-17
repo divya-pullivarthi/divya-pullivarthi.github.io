@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Divya Pullivarthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+     <!-- ADD THIS LINE -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="portfolio.html" class="logo">
+            <img src="https://divya-pullivarthi.github.io/assets/images/profile.jpg" alt="Divya Pullivarthi Logo">
+            Divya Pullivarthi
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="certificates.html">Certificates</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div></div><div></div><div></div>
+            </div>
+            <button id="theme-toggle" title="Toggle theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <main class="container">
+        <header class="page-header">
+            <h1>My Resume</h1>
+            <p>A detailed look at my professional and academic history.</p>
+            <br>
+            <a href="Divya_Resume.pdf" class="btn" download>Download Full Resume (PDF) <i class="fas fa-download"></i></a>
+        </header>
+        <section class="page-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-university"></i></div>
+                    <h3 class="job-title">Grader</h3>
+                    <p class="company-info">College of Computing and Digital Media, DePaul University | Sep 2024 - Present</p>
+                    <ul>
+                        <li>Assessed over 500 student submissions across weekly assignments, quizzes, homework, and projects, providing detailed feedback that improved student understanding and engagement for courses like Data Analysis, Statistics, and Cloud Computing by 30%.</li>
+                        <li>Developed comprehensive grading rubrics that standardized evaluation criteria for diverse assignments, leading to a 20% reduction in grading discrepancies of core data concepts and ensuring consistent assessment quality.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="job-title">Data Analytics Intern</h3>
+                    <p class="company-info">Pianalytix Edutech | Jan 2023 - Jun 2023</p>
+                    <ul>
+                        <li>Analyzed large telecom datasets using Python, improving reporting efficiency by 25%.</li>
+                        <li>Enhanced data quality for deep learning tasks by 15% through cleaning and validation.</li>
+                        <li>Contributed to churn prediction strategies, boosting customer retention by 10%.</li>
+                        <li>Identified key risk factors, enabling cost savings of over $20K annually.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Education</h2>
+            <div class="education-grid">
+                <div class="glass-panel education-card">
+                    <h3 class="degree-title">Master of Science in Information Systems</h3>
+                    <p class="university-info">DePaul University, Chicago | 2024 - Present</p>
+                    <span class="gpa">GPA: 3.97 / 4.0</span>
+                </div>
+                <div class="glass-panel education-card">
+                    <h3 class="degree-title">Bachelor of Technology</h3>
+                    <p class="university-info">MIT Art, Design, and Technology University, Pune | 2019 - 2023</p>
+                    <span class="gpa">GPA: 8.21 / 10</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======================= START: NEW BUTTON SECTION ======================= -->
+        <section class="cta-section">
+             <a href="projects.html" class="btn">View My Projects &rarr;</a>
+        </section>
+        <!-- ======================== END: NEW BUTTON SECTION ======================== -->
+
+    </main>
+    <script>
+        // Theme Toggle & Hamburger scripts
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = themeToggle.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            toggleIcon.className = 'fas fa-moon';
+        } else {
+            toggleIcon.className = 'fas fa-sun';
+        }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light';
+                toggleIcon.className = 'fas fa-moon';
+            } else {
+                toggleIcon.className = 'fas fa-sun';
+            }
+            localStorage.setItem('theme', theme);
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

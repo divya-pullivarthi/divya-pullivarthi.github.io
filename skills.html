@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Divya Pullivarthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+     <!-- ADD THIS LINE -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="portfolio.html" class="logo">
+            <img src="https://divya-pullivarthi.github.io/assets/images/profile.jpg" alt="Divya Pullivarthi Logo">
+            Divya Pullivarthi
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="certificates.html">Certificates</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div></div><div></div><div></div>
+            </div>
+            <button id="theme-toggle" title="Toggle theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
+    <!-- ======================= END: CORRECTED NAVBAR ======================= -->
+
+    <!-- ======================= START: NEW MOBILE MENU OVERLAY ======================= -->
+    <div class="mobile-nav">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <!-- ======================== END: NEW MOBILE MENU OVERLAY ======================== -->
+    
+    <main class="container">
+        <header class="page-header">
+            <h1>Technical Skills</h1>
+            <p>The tools and technologies I use to extract value from data.</p>
+        </header>
+        <div class="skills-grid-detailed">
+            <div class="glass-panel skill-category">
+                <h3>Data Analysis & Visualization</h3>
+                <ul><li>Power BI</li><li>Tableau</li><li>Excel</li><li>SPSS</li><li>SAS</li></ul>
+            </div>
+            <div class="glass-panel skill-category">
+                <h3>Database & Programming</h3>
+                <ul><li>Python</li><li>Django</li><li>R</li><li>SQL</li><li>MySQL</li><li>Oracle SQL</li><li>AWS</li></ul>
+            </div>
+            <div class="glass-panel skill-category">
+                <h3>WireFrame</h3>
+                <ul><li>draw.io</li><li>Microsoft Visio</li><li>Balsamiq</li><li>Figma</li></ul>
+            </div>
+            <div class="glass-panel skill-category">
+                <h3>Machine Learning & AI</h3>
+                <ul><li>TensorFlow</li><li>Jupyter Notebook</li><li>Anaconda</li><li>Computer Vision</li><li>YOLO</li></ul>
+            </div>
+            <div class="glass-panel skill-category">
+                <h3>Project Management</h3>
+                <ul><li>Scrum</li><li>Agile</li><li>JIRA</li><li>Stakeholder Management</li><li>Requirements Gathering</li></ul>
+            </div>
+            <div class="glass-panel skill-category">
+                <h3>Interpersonal</h3>
+                <ul><li>Decision Making</li><li>Problem Solving</li><li>Public Speaking</li><li>Leadership</li><li>Communication</li><li>Team Leadership</li><li>Team Management</li></ul>
+            </div>
+        </div>
+    </main>
+<!-- ======================= START: UPDATED JAVASCRIPT ======================= -->
+    <script>
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = themeToggle.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            toggleIcon.className = 'fas fa-moon';
+        } else {
+            toggleIcon.className = 'fas fa-sun';
+        }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light';
+                toggleIcon.className = 'fas fa-moon';
+            } else {
+                toggleIcon.className = 'fas fa-sun';
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        // --- HAMBURGER MENU SCRIPT ---
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+    </script>
+    <!-- ======================== END: UPDATED JAVASCRIPT ======================== -->
+
+</body>
+</html>

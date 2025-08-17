@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Divya Pullivarthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+    <!-- ======================= START: CORRECTED NAVBAR ======================= -->
+    <nav class="navbar">
+        <a href="portfolio.html" class="logo">
+            <img src="https://divya-pullivarthi.github.io/assets/images/profile.jpg" alt="Divya Pullivarthi Logo">
+            Divya Pullivarthi
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="about.html" class="active">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="certificates.html">Certificates</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div></div><div></div><div></div>
+            </div>
+            <button id="theme-toggle" title="Toggle theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </nav>
+    <!-- ======================= END: CORRECTED NAVBAR ======================= -->
+
+    <!-- ======================= START: NEW MOBILE MENU OVERLAY ======================= -->
+    <div class="mobile-nav">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <!-- ======================== END: NEW MOBILE MENU OVERLAY ======================== -->
+    
+    <main class="container">
+        <header class="page-header">
+            <h1>About Me</h1>
+        </header>
+        <section class="about-content">
+            <p>Hey there! 👋 I'm Divya Pullivarthi. I've always been driven by a deep-seated curiosity to understand not just how things work, but why they work the way they do. This obsession with asking the big questions is what led me to <strong>build a career as a data analyst</strong>.</p>
+            <p>My journey here didn't start with spreadsheets; <strong>it started with circuits and code</strong>. With a background in Electronics and Computer Engineering, I was trained to ask, "How do we build this?" I loved the challenge of creating complex systems, from networking platforms to computer vision robots. But I soon discovered a more powerful question: <strong>"Why are we building this? Why are we building it this way, and how can we do it better?"</strong></p>         
+            <p>That question led me straight to data. I realized that the most innovative engineering is guided by smart decisions, and smart decisions are fueled by clear, compelling information. This realization was the spark that led me to pursue my Master's in Information Systems specializing in Analytics-Driven Decision Making to <strong>bridge the gap between building technology and understanding the human stories and business needs behind it</strong>.</p>
+            <p>This is the mindset I bring to every project. For my EcoPack BI Solution, I developed an interactive dashboard to demonstrate how an organization can pinpoint supply chain waste. The analysis presented through the dashboard uncovered insights pointing to <strong>$1.7M in potential annual savings</strong>. The thrill of building a tool that can spark that kind of real-world change, this is what gets me out of bed every morning.</p>
+            <h4>A Few Fun Facts:</h4>
+            <ul>
+                <li>I think a cup of good coffee can solve almost anything, especially a tough data problem.</li>
+                <li>My playlists are as diverse as my datasets, from Bollywood hits to K-pop rocks.</li>
+                <li>I've been known to break into a dance when a Tableau dashboard finally comes together, just saying :)</li>
+            </ul>
+            <p>I'm not just building a career; I'm building a life where  <strong>technology and values work hand in hand.</strong> If you're passionate about making a meaningful impact or just want to share a great coffee spot, whether in Chicago or virtually, <a href="contact.html" class="inline-link">let’s connect</a>.</p>
+        </section>
+    </main>
+
+    <!-- ======================= START: UPDATED JAVASCRIPT ======================= -->
+    <script>
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = themeToggle.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            toggleIcon.className = 'fas fa-moon';
+        } else {
+            toggleIcon.className = 'fas fa-sun';
+        }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light';
+                toggleIcon.className = 'fas fa-moon';
+            } else {
+                toggleIcon.className = 'fas fa-sun';
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        // --- HAMBURGER MENU SCRIPT ---
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+    </script>
+    <!-- ======================== END: UPDATED JAVASCRIPT ======================== -->
+
+</body>
+</html>

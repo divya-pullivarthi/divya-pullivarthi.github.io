@@ -1,0 +1,504 @@
+/* --- The Glass Command Center Portfolio - Final Polished Version --- */
+
+:root {
+    /* --- DARK MODE (DEFAULT) --- */
+    --bg-gradient: linear-gradient(135deg, #1f0c3a, #13142e);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --accent: #8a78f8; /* Soft Violet */
+    --accent-glow: rgba(138, 120, 248, 0.3);
+}
+
+body.light-mode {
+    /* --- LIGHT MODE --- */
+    --bg-gradient: #f4f7fe;
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --text-primary: #1e293b; /* Dark Slate (Effectively Black) */
+    --text-secondary: #1e293b; /* High-contrast text for light mode */
+    --accent: #7275D5; /* Your chosen light mode color */
+    --accent-glow: rgba(114, 117, 213, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+    padding-top: 7rem; 
+}
+
+/* --- REUSABLE COMPONENTS --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1001;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+/* --- THIS IS THE UPDATED SECTION FOR THE IMAGE + TEXT LOGO --- */
+.logo {
+    display: flex; /* Aligns items side-by-side */
+    align-items: center; /* Vertically centers the image and text */
+    gap: 1rem; /* Space between image and text */
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.logo img {
+    width: 45px; /* Sets the size of the logo */
+    height: 45px;
+    border-radius: 50%; /* Makes it a circle */
+    object-fit: cover; /* Prevents the image from stretching */
+    border: 2px solid var(--accent); /* Adds a matching border */
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1) rotate(6deg); /* Adds a little hover effect */
+}
+
+.nav-right { display: flex; align-items: center; }
+.nav-links { display: flex; }
+.nav-links a {
+    text-decoration: none; color: var(--text-secondary); margin-left: 1.5rem;
+    font-weight: 500; transition: color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+#theme-toggle {
+    background: none; border: none; color: var(--text-secondary); cursor: pointer;
+    font-size: 1.2rem; margin-left: 2rem; padding: 0.5rem;
+    transition: color 0.3s; z-index: 1002;
+}
+#theme-toggle:hover { color: var(--accent); }
+
+/* --- MOBILE NAVIGATION --- */
+.hamburger { display: none; cursor: pointer; z-index: 1002; margin-left: 1rem; }
+.hamburger div { width: 25px; height: 3px; background-color: var(--text-primary); margin: 5px; transition: all 0.3s ease; }
+
+.mobile-nav {
+    position: fixed; top: 0; left: 100%; width: 100%; height: 100vh;
+    background: var(--bg-gradient); z-index: 1000;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: left 0.5s ease;
+}
+.mobile-nav.open { left: 0; }
+.mobile-nav a { text-decoration: none; color: var(--text-primary); font-size: 2rem; margin: 1.5rem 0; }
+.mobile-nav a:hover { color: var(--accent); }
+
+.glass-panel {
+    background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: 20px;
+    transition: all 0.4s ease;
+}
+
+.btn {
+    display: inline-block; background: var(--accent); color: #ffffff;
+    padding: 0.8rem 1.8rem; border-radius: 10px; text-decoration: none;
+    font-weight: 600; transition: all 0.3s ease; border: 1px solid transparent;
+}
+.btn:hover { background: transparent; border-color: var(--accent); color: var(--accent); }
+
+.page-header { 
+    text-align: center; 
+    padding-top: 2rem;
+    padding-bottom: 1rem; 
+}
+.page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+.page-header p { color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+
+/* --- HOMEPAGE: BENTO GRID --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 190px);
+    gap: 1.5rem; padding-top: 2rem;
+    opacity: 0; animation: fadeIn 1s ease-out 0.5s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+.bento-item { padding: 2rem; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.bento-item:hover { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); }
+.bento-content { flex-grow: 1; }
+.bento-content h3 { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.bento-content p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+.bento-item a.bento-link { text-decoration: none; color: var(--text-primary); font-weight: 600; font-size: 1.1rem; margin-top: auto; display: block; }
+.bento-item a.bento-link:hover { color: var(--accent); }
+
+.item-hero { grid-row: 1 / 4; grid-column: 2 / 3; justify-content: center; align-items: center; text-align: center; }
+/* --- THIS IS THE DEFINITIVE FIX FOR THE PROFILE PICTURE --- */
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%; /* THIS IS THE FIX: It shifts the image down slightly */
+    border: 4px solid var(--accent);
+    margin-bottom: 1.5rem;
+}
+.item-hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.item-hero .subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; }
+.item-hero .btn { margin-bottom: 2rem; }
+.hero-social-links { display: flex; gap: 2rem; justify-content: center; }
+/* --- THIS IS THE DEFINITIVE FIX for the Hero Card Social Icons --- */
+.hero-social-links a,
+.hero-social-links button {
+    color: var(--text-secondary); /* Makes both links and button grey */
+    font-size: 1.8rem; /* Makes them the same size */
+    transition: color 0.3s, transform 0.3s;
+}
+
+.hero-social-links a:hover,
+.hero-social-links button:hover {
+    color: var(--accent); /* Makes both turn purple on hover */
+    transform: scale(1.1);
+}
+
+/* Specific resets to make the button look like a link */
+.hero-social-links button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.hero-social-links .copied-feedback i {
+    color: #4ade80 !important; /* A success green color for the checkmark */
+}
+/* --- DEDICATED PAGES --- */
+.page-section { margin-bottom: 4rem; }
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1.1rem; /* Restored original font size, can be increased if needed */
+    line-height: 1.8;
+    text-align: justify; /* This justifies the full lines */
+    text-align-last: left; /* THIS IS THE CRITICAL FIX: Aligns the last line to the left */
+}
+/* --- THIS IS THE DEFINITIVE FIX for the About Page Paragraphs --- */
+.about-content p {
+    margin-bottom: 1.5rem; /* This is the key line that adds space */
+}
+
+.about-content p:last-child {
+    margin-bottom: 0; /* This removes the extra space after the last paragraph */
+}
+.timeline { width: 100%; max-width: 800px; position: relative; padding: 2rem 0; margin: 0 auto; }
+.timeline::before { content: ''; position: absolute; left: 15px; top: 0; height: 100%; width: 2px; background-color: var(--glass-border); }
+.timeline-item { position: relative; padding-left: 50px; margin-bottom: 3rem; text-align: left; }
+.timeline-dot { position: absolute; left: 0; top: 5px; height: 32px; width: 32px; background: var(--bg-gradient); border: 2px solid var(--glass-border); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--accent); }
+.job-title, .degree-title { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); }
+.company-info, .university-info { color: var(--text-secondary); margin: 0.25rem 0 1rem 0; }
+.timeline-item ul { list-style-position: outside; padding-left: 1.5rem; color: var(--text-secondary); }
+.education-grid { display: flex; justify-content: center; gap: 1.5rem; max-width: 900px; margin: 0 auto; flex-wrap: wrap; }
+.education-card { padding: 2rem; flex: 1; min-width: 300px; }
+/* --- THIS IS THE DEFINITIVE FIX FOR THE GPA TAG --- */
+.gpa {
+    display: inline-block;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px; /* This is the crucial line that creates the pill shape */
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease; /* Added for smooth theme switching */
+}
+
+body.light-mode .gpa {
+    border-color: rgba(0, 0, 0, 0.2); /* Makes the border darker and more visible */
+    font-weight: 500;                 /* Makes the text slightly thicker and bolder */
+}
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
+.project-card { padding: 2rem; text-align: left; display: flex; flex-direction: column; }
+.project-card h3 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+.project-card p { color: var(--text-secondary); margin-bottom: 1.5rem; flex-grow: 1; }
+.project-card .btn-container { text-align: center; }
+
+/* --- SKILLS & CERTIFICATES (DEFINITIVE FIX WITH TAGS) --- */
+.skills-grid-detailed, .certs-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.skill-category, .cert-card {
+    padding: 2rem;
+    flex: 1 1 30%;
+    min-width: 300px;
+    max-width: 32%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-category h3, .cert-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    text-align: center; /* THIS IS THE FIX: Centers the heading text */
+}
+.skill-category ul, .cert-card p {
+    flex-grow: 1;
+    color: var(--text-secondary);
+}
+
+/* --- THIS IS THE NEW CODE FOR THE SKILL TAGS (DEFINITIVE FIX) --- */
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-content: flex-start; /* THIS IS THE FIX! */
+}
+.skill-category li {
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+/* --- END OF NEW CODE --- */
+
+.cert-card h3:before { content: "🏆"; margin-right: 0.75rem; }
+
+/* --- CONTACT PAGE (DEFINITIVE FIX) --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.contact-info, .contact-form-container { padding: 2rem; text-align: left; }
+.contact-info h3 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+.contact-info p { color: var(--text-secondary); margin-bottom: 2rem; }
+.contact-details-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 1.1rem; }
+.contact-details-item i { font-size: 1.5rem; color: var(--accent); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+.form-group input, .form-group textarea {
+    width: 100%; padding: 1rem; border: 1px solid var(--glass-border);
+    background: var(--glass-bg); border-radius: 10px; color: var(--text-primary); font-size: 1rem;
+}
+.form-group textarea { resize: vertical; min-height: 150px; }
+.cta-section { text-align: center; margin-top: 4rem; padding-bottom: 2rem; }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    body { padding-top: 6rem; }
+    .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .item-hero { grid-row: auto; grid-column: auto; order: -1; }
+    .contact-container { grid-template-columns: 1fr; }
+    .page-header h1 { font-size: 2.5rem; }
+}
+@media (max-width: 768px) {
+    .container { padding: 1rem; }
+    .navbar { padding: 1rem; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-right { gap: 0.5rem; }
+    .page-header { padding-top: 1rem; padding-bottom: 2rem; }
+    .page-header h1 { font-size: 2rem; }
+    .bento-item, .project-card, .skill-category, .cert-card, .education-card { padding: 1.5rem; max-width: 100%; min-width: unset; }
+    .item-hero h1 { font-size: 2rem; }
+    .profile-pic { width: 140px; height: 140px; }
+    .timeline-item { padding-left: 40px; }
+}
+
+/* --- THIS IS THE DEFINITIVE FIX for the Contact Details --- */
+.contact-details-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    /* Resetting styles for the button */
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    width: 100%;
+    text-align: left;
+    /* Styling for all items */
+    text-decoration: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for all items */
+.contact-details-item:hover,
+.contact-details-item:hover i {
+    color: var(--accent);
+}
+
+.contact-details-item i {
+    font-size: 1.5rem;
+    color: var(--text-primary); /* Icon is white by default */
+    transition: color 0.3s ease;
+}
+
+.copied-feedback span,
+.copied-feedback i {
+    color: #4ade80 !important; /* A success green color */
+    font-style: italic;
+}
+
+/* --- NEW: Form Status Message Styles --- */
+#form-status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    text-align: center;
+    display: none; /* Hidden by default */
+}
+#form-status.success {
+    background: rgba(22, 163, 74, 0.2); /* Green */
+    color: #4ade80;
+    border: 1px solid #22c55e;
+}
+#form-status.error {
+    background: rgba(239, 68, 68, 0.2); /* Red */
+    color: #f87171;
+    border: 1px solid #ef4444;
+}
+/* --- THIS IS THE NEW CODE for the About Page Fun Facts --- */
+.about-content h4 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.about-content ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    text-align: left; /* Ensure list is left-aligned */
+}
+
+.about-content li {
+    padding-left: 1.5em; /* Indent the text */
+    position: relative;
+    margin-bottom: 1rem; /* Space between list items */
+}
+
+.about-content li::before {
+    content: '•'; /* Custom bullet point */
+    color: var(--accent); /* Use the theme's accent color */
+    font-weight: bold;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+}
+
+.about-content a.inline-link {
+    color: var(--accent); /* FIX: Sets the text color to the accent purple by default */
+; /* Inherits the paragraph's text color */
+    text-decoration: none; /* Removes the default underline */
+    font-weight: 600; /* Makes it slightly bolder */
+    border-bottom: 1px dotted var(--accent); /* Adds a subtle, dotted underline */
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.about-content a.inline-link:hover {
+    color: var(--accent); /* Changes text to the accent color on hover */
+    border-bottom: 1px solid var(--accent); /* Makes the underline solid on hover */
+}
+
+/* --- ADD THIS NEW SECTION to your style.css for the certificate credentials --- */
+.cert-card-content {
+    flex-grow: 1; /* This is the key: it pushes the footer to the bottom */
+}
+
+.cert-footer, .form-button-container {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    text-align: center; /* This is the key line that centers the button */
+}
+
+/* This removes the border from the contact button container */
+.form-button-container {
+    border-top: none;
+    padding-top: 0;
+}
+
+/* --- THIS IS THE NEW CODE for the "Copy to Clipboard" button --- */
+.copy-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 0.75rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.copy-button:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.copied-feedback {
+    color: var(--accent) !important;
+    font-weight: 600;
+}
+
+/* --- THIS IS THE DEFINITIVE FIX for the "Click-to-Copy" Email --- */
+.contact-details-item.is-copyable {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.contact-details-item.is-copyable:hover span,
+.contact-details-item.is-copyable:hover i {
+    color: var(--accent);
+}
+
+.contact-details-item .copied-feedback i {
+    color: #4ade80 !important; /* A success green color */
+}
+
+/* --- THIS IS THE NEW CODE for the Homepage "Click-to-Copy" Email Icon --- */
+.hero-social-links button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.hero-social-links .copied-feedback i {
+    color: #4ade80 !important; /* A success green color */
+}
